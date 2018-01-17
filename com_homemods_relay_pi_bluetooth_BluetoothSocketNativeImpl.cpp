@@ -28,7 +28,12 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothSocketNativ
  */
 JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothSocketNativeImpl_writeN
   (JNIEnv *env, jobject thisObj, jint socket, jbyteArray bytes, jint count) {
-    int status = write(socket, bytes, count);
+    jbyte *arr = env->GetByteArrayElements(bytes, 0);
+
+    int status = write(socket, arr, count);
+
+    env->ReleaseByteArrayElements(bytes, arr, 0);
+
     return status;
 }
 

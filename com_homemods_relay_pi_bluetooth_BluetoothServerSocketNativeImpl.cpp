@@ -2,8 +2,7 @@
 #include "com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl.h"
 #include "bluetooth_helper.h"
 #include <unistd.h>
-#include <sys/socket.h>
-#include <bluetooth/bluetooth.h>
+#include <cerrno>
 #include <bluetooth/l2cap.h>
 
 /*
@@ -13,7 +12,12 @@
  */
 JNIEXPORT void JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl_listenN
   (JNIEnv *env, jobject thisObj, jint socket) {
-    listen(socket, 1);
+    int result = listen(socket, 1);
+
+    if (result == -1) { //If failed
+        checkError(errno);
+    }
+
 }
 
 /*
@@ -28,6 +32,10 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocke
     char buf[1024] = { 0 };
 
     int client = accept(socket, (struct sockaddr *)&rem_addr, &opt);
+
+    if (client == -1) { //If failed
+        checkError(errno);
+    }
 
     ba2strReal( &rem_addr.l2_bdaddr, buf);
 

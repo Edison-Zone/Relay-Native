@@ -1,6 +1,8 @@
 
 #include "com_homemods_relay_pi_bluetooth_BluetoothServerNativeImpl.h"
+#include "bluetooth_helper.h"
 #include <sys/socket.h>
+#include <cerrno>
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/l2cap.h>
 
@@ -23,7 +25,11 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerNativ
     loc_addr.l2_bdaddr = {{0, 0, 0, 0, 0, 0}};
     loc_addr.l2_psm = htobs(static_cast<unsigned short>(port));
 
-    bind(s, (struct sockaddr *)&loc_addr, sizeof(loc_addr));
+    int result = bind(s, (struct sockaddr *)&loc_addr, sizeof(loc_addr));
+
+    if (result == -1) { //If failed
+        checkError(errno);
+    }
 
     return s;
 }

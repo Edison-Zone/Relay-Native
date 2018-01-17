@@ -52,4 +52,8 @@ extern "C" {
 
         return 0;
     }
+
+    void checkError(int err) {
+        printf(strerror(err));
+    }
 }

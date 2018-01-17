@@ -13,6 +13,8 @@ extern "C" {
     int str2baReal(const char *str, bdaddr_t *ba);
 
     int bachkReal(const char *str);
+
+    void checkError(int errorCode);
 }
 
 #endif //EDISONNATIVE_BLUETOOTH_HELPER_H

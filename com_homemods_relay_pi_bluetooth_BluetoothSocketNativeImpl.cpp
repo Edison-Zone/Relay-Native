@@ -14,7 +14,7 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothSocketNativ
   (JNIEnv *env, jobject thisObj, jint socket, jbyteArray bytes, jint max) {
     jbyte *arr = env->GetByteArrayElements(bytes, 0);
 
-    int count = read(socket, arr, max* sizeof(jbyte));
+    int count = read(socket, arr, max);
 
     env->ReleaseByteArrayElements(bytes, arr, 0);
 

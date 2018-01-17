@@ -21,6 +21,7 @@ set(SOURCE_FILES
         com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl.cpp
         com_homemods_relay_pi_bluetooth_BluetoothSocketNativeImpl.cpp
         com_homemods_relay_pi_bluetooth_BluetoothClientNativeImpl.cpp
-        com_homemods_relay_pi_bluetooth_BluetoothClientSocketNativeImpl.cpp bluetooth_helper.h)
+        com_homemods_relay_pi_bluetooth_BluetoothClientSocketNativeImpl.cpp
+        bluetooth_helper.cpp)
 
 add_library(EdisonNative SHARED ${SOURCE_FILES})

@@ -1,5 +1,6 @@
 
 #include "com_homemods_relay_pi_bluetooth_BluetoothClientSocketNativeImpl.h"
+#include "bluetooth_helper.h"
 #include <sys/socket.h>
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/l2cap.h>
@@ -17,7 +18,7 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothClientSocke
     // set the connection parameters (who to connect to)
     addr.l2_family = AF_BLUETOOTH;
     addr.l2_psm = htobs(static_cast<unsigned short>(port));
-    str2ba( addressC, &addr.l2_bdaddr );
+    str2baReal( addressC, &addr.l2_bdaddr );
 
     env->ReleaseStringUTFChars(address, addressC);
 

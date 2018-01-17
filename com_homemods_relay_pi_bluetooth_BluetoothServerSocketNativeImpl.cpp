@@ -32,7 +32,7 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocke
     ba2strReal( &rem_addr.l2_bdaddr, buf);
 
     jstring name = env->NewStringUTF(buf);
-    env->SetObjectField(thisObj, env->GetFieldID(env->GetObjectClass(thisObj), "connectionName", "Ljava/lang/String"), name);
+    env->SetObjectField(thisObj, env->GetFieldID(env->GetObjectClass(thisObj), "connectionName", "Ljava/lang/String;"), name);
 
     return client;
 }

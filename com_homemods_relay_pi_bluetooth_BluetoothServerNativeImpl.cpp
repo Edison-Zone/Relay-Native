@@ -23,11 +23,17 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerNativ
     // bluetooth adapter
     loc_addr.l2_family = AF_BLUETOOTH;
     loc_addr.l2_bdaddr = {{0, 0, 0, 0, 0, 0}};
-    loc_addr.l2_psm = htobs(static_cast<unsigned short>(port));
+
+    unsigned short sport = static_cast<unsigned short>(port);
+
+    printf("Server Port: %hX\n", sport);
+
+    loc_addr.l2_psm = htobs(sport);
 
     int result = bind(s, (struct sockaddr *)&loc_addr, sizeof(loc_addr));
 
     if (result == -1) { //If failed
+	printf("bind failed\n");
         checkError(errno);
     }
 

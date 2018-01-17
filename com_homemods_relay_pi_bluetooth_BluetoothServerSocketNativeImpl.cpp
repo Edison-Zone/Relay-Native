@@ -15,6 +15,7 @@ JNIEXPORT void JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocke
     int result = listen(socket, 1);
 
     if (result == -1) { //If failed
+	printf("listen failed\n");
         checkError(errno);
     }
 
@@ -34,6 +35,7 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocke
     int client = accept(socket, (struct sockaddr *)&rem_addr, &opt);
 
     if (client == -1) { //If failed
+	printf("accept failed\n");
         checkError(errno);
     }
 

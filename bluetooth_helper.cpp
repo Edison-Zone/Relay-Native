@@ -54,6 +54,6 @@ extern "C" {
     }
 
     void checkError(int err) {
-        printf(strerror(err));
+        printf("%s\n",strerror(err));
     }
 }

@@ -1,66 +1,37 @@
-# - Try to find BlueZ
-# Find BlueZ headers, libraries and the answer to all questions.
-#
-#  BLUEZ_FOUND               True if BlueZ libraries got found
-#  BLUEZ_INCLUDE_DIR         Location of BlueZ headers 
-#  BLUEZ_LIBRARIES           List of libaries to use BlueZ
-#
-# Copyright (c) 2007 Daniel Gollub <gollub@b1-systems.de>
-# Copyright (c) 2007-2009 Bjoern Ricks  <bjoern.ricks@gmail.com>
-#
-#  Redistribution and use is allowed according to the terms of the New
-#  BSD license.
-#  For details see the accompanying COPYING-CMAKE-SCRIPTS file.
-#
 
+set(bluez_dir bluez)
 
-if(WIN32 OR APPLE OR NOT UNIX)
-    if(NOT Bluez_FIND_QUIETLY)
-        message(STATUS "Platform not supported by Bluez - using provided implementation")
-        include_directories(${CMAKE_CURRENT_SOURCE_DIR}/cmake/bluez)
-        return()
-    endif()
-else()
-	INCLUDE( FindPkgConfig )
+set(bluez_src ${bluez_dir}/attrib/att.c
+                ${bluez_dir}/attrib/gatt.c
+                ${bluez_dir}/attrib/gattrib.c
+                ${bluez_dir}/btio/btio.c
+                ${bluez_dir}/lib/bluetooth.c
+                ${bluez_dir}/lib/hci.c
+                ${bluez_dir}/lib/sdp.c
+                ${bluez_dir}/lib/uuid.c
+                ${bluez_dir}/src/log.c
+                ${bluez_dir}/src/shared/queue.c
+                ${bluez_dir}/src/shared/util.c
+                ${bluez_dir}/src/shared/mgmt.c
+                ${bluez_dir}/src/shared/crypto.c
+                ${bluez_dir}/src/shared/ecc.c
+                ${bluez_dir}/src/shared/ringbuf.c
+                ${bluez_dir}/src/shared/tester.c
+                ${bluez_dir}/src/shared/hci.c
+                ${bluez_dir}/src/shared/hci-crypto.c
+                ${bluez_dir}/src/shared/hfp.c
+                ${bluez_dir}/src/shared/uhid.c
+                ${bluez_dir}/src/shared/pcap.c
+                ${bluez_dir}/src/shared/btsnoop.c
+                ${bluez_dir}/src/shared/ad.c
+                ${bluez_dir}/src/shared/att.c
+                ${bluez_dir}/src/shared/gatt-helpers.c
+                ${bluez_dir}/src/shared/gatt-client.c
+                ${bluez_dir}/src/shared/gatt-server.c
+                ${bluez_dir}/src/shared/gatt-db.c
+                ${bluez_dir}/src/shared/gap.c
+                ${bluez_dir}/src/shared/io-glib.c
+                ${bluez_dir}/src/shared/timeout-glib.c)
 
-	# Take care about bluez.pc settings
-	IF ( BlueZ_FIND_REQUIRED )
-		SET( _pkgconfig_REQUIRED "REQUIRED" )
-	ELSE( BlueZ_FIND_REQUIRED )
-		SET( _pkgconfig_REQUIRED "" )	
-	ENDIF ( BlueZ_FIND_REQUIRED )
-
-	IF ( BLUEZ_MIN_VERSION )
-		PKG_SEARCH_MODULE( BLUEZ ${_pkgconfig_REQUIRED} bluez>=${BLUEZ_MIN_VERSION} )
-	ELSE ( BLUEZ_MIN_VERSION )
-		PKG_SEARCH_MODULE( BLUEZ ${_pkgconfig_REQUIRED} bluez )
-	ENDIF ( BLUEZ_MIN_VERSION )
-
-	# Look for BlueZ include dir and libraries
-	IF( NOT BLUEZ_FOUND AND NOT PKG_CONFIG_FOUND )
-
-		FIND_PATH( BLUEZ_INCLUDE_DIR bluetooth/bluetooth.h )
-		FIND_LIBRARY( BLUEZ_LIBRARIES bluetooth )
-
-		# Report results
-		IF ( BLUEZ_LIBRARIES AND BLUEZ_INCLUDE_DIR )	
-			SET( BLUEZ_FOUND 1 )
-			IF ( NOT BlueZ_FIND_QUIETLY )
-				MESSAGE( STATUS "Found BlueZ: ${BLUEZ_LIBRARIES}" )
-			ENDIF ( NOT BlueZ_FIND_QUIETLY )
-		ELSE ( BLUEZ_LIBRARIES AND BLUEZ_INCLUDE_DIR )	
-			IF ( BlueZ_FIND_REQUIRED )
-				MESSAGE( SEND_ERROR "Could NOT find BLUEZ" )
-			ELSE ( BlueZ_FIND_REQUIRED )
-				IF ( NOT BlueZ_FIND_QUIETLY )
-					MESSAGE( STATUS "Could NOT find BLUEZ" )	
-				ENDIF ( NOT BlueZ_FIND_QUIETLY )
-			ENDIF ( BlueZ_FIND_REQUIRED )
-		ENDIF ( BLUEZ_LIBRARIES AND BLUEZ_INCLUDE_DIR )
-
-	ENDIF( NOT BLUEZ_FOUND AND NOT PKG_CONFIG_FOUND  )
-
-	# Hide advanced variables from CMake GUIs
-	MARK_AS_ADVANCED( BLUEZ_LIBRARIES BLUEZ_INCLUDE_DIR )
-
-endif()
+include_directories(${bluez_dir} ${bluez_dir}/attrib ${bluez_dir}/btio ${bluez_dir}/lib)
+link_directories(${bluez_dir} ${bluez_dir}/attrib ${bluez_dir}/btio ${bluez_dir}/lib)

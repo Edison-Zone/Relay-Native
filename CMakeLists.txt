@@ -3,14 +3,16 @@ project(EdisonNative)
 
 set(CMAKE_BUILD_TYPE Release)
 
-LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_PREFIX}")
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_PREFIX}/cmake")
+#set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 find_package(JNI REQUIRED)
 include_directories(${JNI_INCLUDE_DIRS})
 
-find_package (Bluez REQUIRED cmake/FindBluez.cmake)
+include(cmake/FindBluez.cmake)
+#find_package (Bluez REQUIRED cmake/FindBluez.cmake)
 include_directories(${BLUEZ_INCLUDE_DIRS})
+link_directories(${BLUEZ_LIBRARIES})
 
 set(CMAKE_CXX_STANDARD 11)
 

@@ -6,12 +6,13 @@
 #define EDISONNATIVE_BLUETOOTH_HELPER_H
 
 #include <bluetooth/bluetooth.h>
-#include <cstdlib>
 
 extern "C" {
     int ba2strReal(const bdaddr_t *ba, char *str);
 
     int str2baReal(const char *str, bdaddr_t *ba);
+
+    int bachkReal(const char *str);
 }
 
 #endif //EDISONNATIVE_BLUETOOTH_HELPER_H

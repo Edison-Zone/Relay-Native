@@ -3,6 +3,8 @@
 //
 
 #include "bluetooth_helper.h"
+#include <cstdlib>
+#include <cctype>
 
 extern "C" {
     int ba2strReal(const bdaddr_t *ba, char *str)
@@ -15,13 +17,38 @@ extern "C" {
     {
         int i;
 
-        if (bachk(str) < 0) {
+        if (bachkReal(str) < 0) {
             memset(ba, 0, sizeof(*ba));
             return -1;
         }
 
         for (i = 5; i >= 0; i--, str += 3)
             ba->b[i] = strtol(str, NULL, 16);
+
+        return 0;
+    }
+
+    int bachkReal(const char *str)
+    {
+        if (!str)
+            return -1;
+
+        if (strlen(str) != 17)
+            return -1;
+
+        while (*str) {
+            if (!isxdigit(*str++))
+                return -1;
+
+            if (!isxdigit(*str++))
+                return -1;
+
+            if (*str == 0)
+                break;
+
+            if (*str++ != ':')
+                return -1;
+        }
 
         return 0;
     }

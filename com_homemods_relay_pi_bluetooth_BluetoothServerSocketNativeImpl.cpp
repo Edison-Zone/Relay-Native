@@ -1,5 +1,6 @@
 
 #include "com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl.h"
+#include "bluetooth_helper.h"
 #include <unistd.h>
 #include <sys/socket.h>
 #include <bluetooth/bluetooth.h>
@@ -28,7 +29,7 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocke
 
     int client = accept(socket, (struct sockaddr *)&rem_addr, &opt);
 
-    ba2str( &rem_addr.l2_bdaddr, buf);
+    ba2strReal( &rem_addr.l2_bdaddr, buf);
 
     jstring name = env->NewStringUTF(buf);
     env->SetObjectField(thisObj, env->GetFieldID(env->GetObjectClass(thisObj), "connectionName", "Ljava/lang/String"), name);

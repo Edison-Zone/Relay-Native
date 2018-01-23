@@ -1,16 +1,16 @@
 
-#include "com_homemods_relay_pi_bluetooth_BluetoothClientSocketNativeImpl.h"
+#include "com_homemods_bluetooth_BluetoothClientSocketNativeImpl.h"
 #include "bluetooth_helper.h"
 #include <sys/socket.h>
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/l2cap.h>
 
 /*
- * Class:     com_homemods_relay_pi_bluetooth_BluetoothClientSocketNativeImpl
+ * Class:     com_homemods_bluetooth_BluetoothClientSocketNativeImpl
  * Method:    connectN
  * Signature: (Ljava/lang/String;I)I
  */
-JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothClientSocketNativeImpl_connectN
+JNIEXPORT jint JNICALL Java_com_homemods_bluetooth_BluetoothClientSocketNativeImpl_connectN
   (JNIEnv *env, jobject thisObj, jint socket, jstring address, jshort port) {
     struct sockaddr_l2 addr = { 0 };
     const char *addressC = env->GetStringUTFChars(address, 0);

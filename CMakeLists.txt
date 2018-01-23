@@ -17,11 +17,11 @@ link_directories(${BLUEZ_LIBRARIES})
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-        com_homemods_relay_pi_bluetooth_BluetoothServerNativeImpl.cpp
-        com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl.cpp
-        com_homemods_relay_pi_bluetooth_BluetoothSocketNativeImpl.cpp
-        com_homemods_relay_pi_bluetooth_BluetoothClientNativeImpl.cpp
-        com_homemods_relay_pi_bluetooth_BluetoothClientSocketNativeImpl.cpp
+        com_homemods_bluetooth_BluetoothServerNativeImpl.cpp
+        com_homemods_bluetooth_BluetoothServerSocketNativeImpl.cpp
+        com_homemods_bluetooth_BluetoothSocketNativeImpl.cpp
+        com_homemods_bluetooth_BluetoothClientNativeImpl.cpp
+        com_homemods_bluetooth_BluetoothClientSocketNativeImpl.cpp
         bluetooth_helper.cpp)
 
 add_library(EdisonNative SHARED ${SOURCE_FILES})

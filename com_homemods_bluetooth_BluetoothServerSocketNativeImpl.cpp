@@ -1,16 +1,16 @@
 
-#include "com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl.h"
+#include "com_homemods_bluetooth_BluetoothServerSocketNativeImpl.h"
 #include "bluetooth_helper.h"
 #include <unistd.h>
 #include <cerrno>
 #include <bluetooth/l2cap.h>
 
 /*
- * Class:     com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl
+ * Class:     com_homemods_bluetooth_BluetoothServerSocketNativeImpl
  * Method:    listenN
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl_listenN
+JNIEXPORT void JNICALL Java_com_homemods_bluetooth_BluetoothServerSocketNativeImpl_listenN
   (JNIEnv *env, jobject thisObj, jint socket) {
     int result = listen(socket, 1);
 
@@ -22,11 +22,11 @@ JNIEXPORT void JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocke
 }
 
 /*
- * Class:     com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl
+ * Class:     com_homemods_bluetooth_BluetoothServerSocketNativeImpl
  * Method:    acceptConnectionN
  * Signature: (I)V
  */
-JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl_acceptConnectionN
+JNIEXPORT jint JNICALL Java_com_homemods_bluetooth_BluetoothServerSocketNativeImpl_acceptConnectionN
   (JNIEnv *env, jobject thisObj, jint socket) {
     struct sockaddr_l2 rem_addr = { 0 };
     socklen_t opt = sizeof(rem_addr);
@@ -48,11 +48,11 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocke
 }
 
 /*
- * Class:     com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl
+ * Class:     com_homemods_bluetooth_BluetoothServerSocketNativeImpl
  * Method:    closeN
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerSocketNativeImpl_closeN
+JNIEXPORT void JNICALL Java_com_homemods_bluetooth_BluetoothServerSocketNativeImpl_closeN
   (JNIEnv *env, jobject thisObj, jint socket) {
     close(socket);
 }

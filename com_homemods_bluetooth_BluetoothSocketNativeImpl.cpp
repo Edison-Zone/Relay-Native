@@ -1,16 +1,16 @@
 
-#include "com_homemods_relay_pi_bluetooth_BluetoothSocketNativeImpl.h"
+#include "com_homemods_bluetooth_BluetoothSocketNativeImpl.h"
 #include <unistd.h>
 #include <sys/socket.h>
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/l2cap.h>
 
 /*
- * Class:     com_homemods_relay_pi_bluetooth_BluetoothSocketNativeImpl
+ * Class:     com_homemods_bluetooth_BluetoothSocketNativeImpl
  * Method:    readN
  * Signature: (I[BI)I
  */
-JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothSocketNativeImpl_readN
+JNIEXPORT jint JNICALL Java_com_homemods_bluetooth_BluetoothSocketNativeImpl_readN
   (JNIEnv *env, jobject thisObj, jint socket, jbyteArray bytes, jint max) {
     jbyte *arr = env->GetByteArrayElements(bytes, 0);
 
@@ -22,11 +22,11 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothSocketNativ
 }
 
 /*
- * Class:     com_homemods_relay_pi_bluetooth_BluetoothSocketNativeImpl
+ * Class:     com_homemods_bluetooth_BluetoothSocketNativeImpl
  * Method:    writeN
  * Signature: (I[BI)V
  */
-JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothSocketNativeImpl_writeN
+JNIEXPORT jint JNICALL Java_com_homemods_bluetooth_BluetoothSocketNativeImpl_writeN
   (JNIEnv *env, jobject thisObj, jint socket, jbyteArray bytes, jint count) {
     jbyte *arr = env->GetByteArrayElements(bytes, 0);
 
@@ -38,11 +38,11 @@ JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothSocketNativ
 }
 
 /*
- * Class:     com_homemods_relay_pi_bluetooth_BluetoothSocketNativeImpl
+ * Class:     com_homemods_bluetooth_BluetoothSocketNativeImpl
  * Method:    closeN
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothSocketNativeImpl_closeN
+JNIEXPORT void JNICALL Java_com_homemods_bluetooth_BluetoothSocketNativeImpl_closeN
   (JNIEnv *env, jobject thisObj, jint socket) {
     close(socket);
 }

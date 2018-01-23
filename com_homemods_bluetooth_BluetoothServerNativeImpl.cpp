@@ -1,5 +1,5 @@
 
-#include "com_homemods_relay_pi_bluetooth_BluetoothServerNativeImpl.h"
+#include "com_homemods_bluetooth_BluetoothServerNativeImpl.h"
 #include "bluetooth_helper.h"
 #include <sys/socket.h>
 #include <cerrno>
@@ -7,11 +7,11 @@
 #include <bluetooth/l2cap.h>
 
 /*
- * Class:     com_homemods_relay_pi_bluetooth_BluetoothServerNativeImpl
+ * Class:     com_homemods_bluetooth_BluetoothServerNativeImpl
  * Method:    allocSocket
  * Signature: (S)I
  */
-JNIEXPORT jint JNICALL Java_com_homemods_relay_pi_bluetooth_BluetoothServerNativeImpl_allocSocket
+JNIEXPORT jint JNICALL Java_com_homemods_bluetooth_BluetoothServerNativeImpl_allocSocket
   (JNIEnv *env, jobject thisObj, jshort port) {
     struct sockaddr_l2 loc_addr = { 0 }, rem_addr = { 0 };
     int s;
